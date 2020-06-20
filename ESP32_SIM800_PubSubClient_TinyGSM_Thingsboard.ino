@@ -100,11 +100,7 @@ String modemInfo = modem.getModemInfo();
   if (strlen(simPIN) && modem.getSimStatus() != 3 ) {
     modem.simUnlock(simPIN);
   }
-}
-
-  void loop() {
-
-    delay(1000);
+  delay(1000);
 
   if (!modemConnected) {
     SerialMon.print(F("Waiting for network..."));
@@ -139,6 +135,11 @@ String modemInfo = modem.getModemInfo();
       return;
     }
   }
+}
+
+  void loop() {
+
+    
 
   Serial.println("Sending data...");
 
@@ -146,9 +147,12 @@ String modemInfo = modem.getModemInfo();
   // See https://thingsboard.io/docs/reference/mqtt-api/#telemetry-upload-api
   // for more details
 
-  tb.sendTelemetryInt("temperature", 22);
+  tb.sendTelemetryInt("temperature", 10);
   tb.sendTelemetryFloat("humidity", 42.5);
+  tb.sendTelemetryInt("Boiling Point", 100);
 
   tb.loop();
+
+  delay(1000);
 }
   
